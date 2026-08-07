@@ -15,7 +15,7 @@ import (
 var client = cloudflare.NewClient()
 
 func MustGetJwtKey(id string) []byte {
-	r, err := client.KV.Namespaces.Values.Get(context.TODO(), JwtKeyNamespace, id, kv.NamespaceValueGetParams{
+	r, err := client.KV.Namespaces.Values.Get(context.TODO(), os.Getenv(JwtKeyNamespace), id, kv.NamespaceValueGetParams{
 		AccountID: cloudflare.String(os.Getenv("CLOUDFLARE_ACCOUNT_ID")),
 	})
 	if err != nil {
