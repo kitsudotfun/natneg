@@ -6,6 +6,7 @@ import (
 	"log"
 	"net"
 	"net/netip"
+	"os"
 	"slices"
 
 	. "github.com/kitsudotfun/natneg/defs"
@@ -23,7 +24,7 @@ var (
 
 func main() {
 	var err error
-	conn, err = net.ListenUDP("udp4", &net.UDPAddr{IP: net.ParseIP("51.81.22.70"), Port: 62426})
+	conn, err = net.ListenUDP("udp4", &net.UDPAddr{IP: net.ParseIP(os.Getenv("ADDR")), Port: 62426})
 	if err != nil {
 		panic(err)
 	}
