@@ -42,6 +42,12 @@ func main() {
 
 		data := slices.Clone(buf[:n])
 
+		var isNatneg bool
+		data, isNatneg = bytes.CutPrefix(data, []byte(NatnegMagic))
+		if !isNatneg {
+			continue
+		}
+
 		log.Printf("%s: got packet: %x", addr, data)
 
 		handler, exists := handlers[data[0]]
@@ -56,7 +62,12 @@ func main() {
 			continue
 		}
 
-		_, err = conn.WriteToUDPAddrPort(append([]byte{data[0]}, resp...), addr)
+		var buf bytes.Buffer
+		buf.WriteString(NatnegMagic)
+		buf.WriteByte(data[0])
+		buf.Write(resp)
+
+		_, err = conn.WriteToUDPAddrPort(buf.Bytes(), addr)
 		if err != nil {
 			log.Printf("%s: error: %s", addr, err)
 			continue

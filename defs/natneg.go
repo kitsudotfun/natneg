@@ -1,5 +1,7 @@
 package defs
 
+const NatnegMagic = "KTnn"
+
 const (
 	KeepAlive = iota
 	Discover
