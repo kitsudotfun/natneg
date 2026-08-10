@@ -2,12 +2,8 @@ github.com/cloudflare/cloudflare-go/v7 v7.8.0 h1:nCv6FOjWlD0Ran+B5dJDxIoc29Kl4Tn
 github.com/cloudflare/cloudflare-go/v7 v7.8.0/go.mod h1:9zcoIAtu6cmcoPszCNISvqYMXs8wObtVGXE1qGFMrNU=
 github.com/golang-jwt/jwt/v5 v5.3.1 h1:kYf81DTWFe7t+1VvL7eS+jKFVWaUnK9cB1qbwn63YCY=
 github.com/golang-jwt/jwt/v5 v5.3.1/go.mod h1:fxCRLWMO43lRc8nhHWY6LGqRcf+1gQWArsqaEUEa5bE=
-github.com/kitsudotfun/kyuubi v0.0.0-20260807030840-d8b14267169b h1:EYHtFi6pHfV0DAqfm+d/kxkTS70orCXzq4OovYlRl7c=
-github.com/kitsudotfun/kyuubi v0.0.0-20260807030840-d8b14267169b/go.mod h1:m5jV1WfxEC9W+0XsegWYEZOwqn8NX95DZMYsnwu6qkI=
 github.com/kitsudotfun/kyuubi v0.0.0-20260807065721-d14eeb528fe8 h1:hCP7TFYXglK2439wtc66XDn554cnX5r1K523YZGhF+k=
 github.com/kitsudotfun/kyuubi v0.0.0-20260807065721-d14eeb528fe8/go.mod h1:m5jV1WfxEC9W+0XsegWYEZOwqn8NX95DZMYsnwu6qkI=
-github.com/syumai/workers v0.33.0 h1:ku24TZT8m32leS5wYId1F+pGPVXhl+TPnxaDwbr66y4=
-github.com/syumai/workers v0.33.0/go.mod h1:ZnqmdiHNBrbxOLrZ/HJ5jzHy6af9cmiNZk10R9NrIEA=
 github.com/tidwall/gjson v1.14.2/go.mod h1:/wbyibRr2FHMks5tjHJ5F8dMZh3AcwJEMf5vlfC0lxk=
 github.com/tidwall/gjson v1.14.4 h1:uo0p8EbA09J7RQaflQ1aBRffTR7xedD2bcIVSYxLnkM=
 github.com/tidwall/gjson v1.14.4/go.mod h1:/wbyibRr2FHMks5tjHJ5F8dMZh3AcwJEMf5vlfC0lxk=

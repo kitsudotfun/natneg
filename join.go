@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"log"
 	"net/netip"
 	"slices"
 
@@ -22,15 +23,21 @@ func handleJoin(req JoinRequest, addr netip.AddrPort) (JoinResponse, error) {
 		return JoinResponse{}, ErrInvalidToken
 	}
 
+	var sid SessionID
+	sid.FromString(claims.Subject)
+
 	var buf bytes.Buffer
-	buf.WriteByte(JoinNotify) // packet type
+	buf.WriteString(NatnegMagic)
+	buf.WriteByte(JoinNotify)
 	err = json.NewEncoder(&buf).Encode(JoinNotifyResponse{
-		ClientID:   claims.ServerID,
+		ClientID:   sid,
 		ClientAddr: addr,
 	})
 	if err != nil {
 		return JoinResponse{}, err
 	}
+
+	log.Printf("%s: sent packet: %x", claims.ServerAddr, buf.Bytes())
 
 	_, err = conn.WriteToUDPAddrPort(buf.Bytes(), claims.ServerAddr)
 	if err != nil {
