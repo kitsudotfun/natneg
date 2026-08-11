@@ -10,7 +10,7 @@ import (
 )
 
 func handleDiscover(req DiscoverRequest, addr netip.AddrPort) (DiscoverResponse, error) {
-	var claims jwt.RegisteredClaims
+	var claims SessionClaims
 	token, err := jwt.ParseWithClaims(req.Token, &claims, func(t *jwt.Token) (any, error) { return MustGetJwtKey("session"), nil })
 	if err != nil {
 		return DiscoverResponse{}, err
@@ -19,18 +19,13 @@ func handleDiscover(req DiscoverRequest, addr netip.AddrPort) (DiscoverResponse,
 		return DiscoverResponse{}, ErrInvalidToken
 	}
 
-	id, err := token.Claims.GetSubject()
-	if err != nil {
-		return DiscoverResponse{}, err
-	}
-
 	ret, err := jwt.NewWithClaims(JwtMethod, NatNegClaims{
 		RegisteredClaims: jwt.RegisteredClaims{
-			Subject:   id,
 			Audience:  jwt.ClaimStrings{"natneg_attest"},
 			ExpiresAt: claims.ExpiresAt,
 		},
-		Addr: addr,
+		Session: claims.Session,
+		Addr:    addr,
 	}).SignedString(MustGetJwtKey("natneg"))
 	if err != nil {
 		return DiscoverResponse{}, err

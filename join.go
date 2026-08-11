@@ -23,14 +23,11 @@ func handleJoin(req JoinRequest, addr netip.AddrPort) (JoinResponse, error) {
 		return JoinResponse{}, ErrInvalidToken
 	}
 
-	var sid SessionID
-	sid.FromString(claims.Subject)
-
 	var buf bytes.Buffer
 	buf.WriteString(NatnegMagic)
 	buf.WriteByte(JoinNotify)
 	err = json.NewEncoder(&buf).Encode(JoinNotifyResponse{
-		ClientID:   sid,
+		ClientID:   claims.Session.ID,
 		ClientAddr: addr,
 	})
 	if err != nil {
