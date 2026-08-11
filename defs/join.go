@@ -10,11 +10,11 @@ type JoinRequest struct {
 	Token string `json:"token"`
 }
 type JoinResponse struct {
-	ServerID   SessionID      `json:"server_id"`
+	ServerID   PeerID         `json:"server_id"`
 	ServerAddr netip.AddrPort `json:"server_addr"`
 }
 
 type JoinNotifyResponse struct {
-	ClientID   SessionID      `json:"client_id"`
+	ClientID   PeerID         `json:"client_id"`
 	ClientAddr netip.AddrPort `json:"client_addr"`
 }
