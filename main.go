@@ -44,7 +44,7 @@ func main() {
 		data := slices.Clone(buf[:n])
 
 		var isNatneg bool
-		data, isNatneg = bytes.CutPrefix(data, []byte(NatnegMagic))
+		data, isNatneg = bytes.CutPrefix(data, []byte(PeerMagic))
 		if !isNatneg {
 			continue
 		}
@@ -64,7 +64,7 @@ func main() {
 		}
 
 		var buf bytes.Buffer
-		buf.WriteString(NatnegMagic)
+		buf.WriteString(PeerMagic)
 		buf.WriteByte(data[0])
 		buf.Write(resp)
 

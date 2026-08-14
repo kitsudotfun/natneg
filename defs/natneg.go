@@ -1,6 +1,6 @@
 package defs
 
-const NatnegMagic = "KTnn"
+const PeerMagic = "KTsu"
 
 const (
 	KeepAlive = iota

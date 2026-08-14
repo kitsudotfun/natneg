@@ -24,7 +24,7 @@ func handleJoin(req JoinRequest, addr netip.AddrPort) (JoinResponse, error) {
 	}
 
 	var buf bytes.Buffer
-	buf.WriteString(NatnegMagic)
+	buf.WriteString(PeerMagic)
 	buf.WriteByte(JoinNotify)
 	err = json.NewEncoder(&buf).Encode(JoinNotifyResponse{
 		ClientID:   claims.Session.ID,
